@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "673747775834",
+    "project_id": "galaxy-a14d1",
+    "storage_bucket": "galaxy-a14d1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673747775834:android:5e4fc26833a592d6974363",
+        "android_client_info": {
+          "package_name": "com.robox.galaxy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAL8mnDWjcRIjm59BK-eU-74TrGrr7H1tE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
