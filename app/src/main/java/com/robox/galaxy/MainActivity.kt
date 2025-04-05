@@ -9,6 +9,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.robox.galaxy.databinding.ActivityMainBinding
+import androidx.fragment.app.Fragment
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -81,4 +83,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Already logged in as ${auth.currentUser?.email}", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 }
