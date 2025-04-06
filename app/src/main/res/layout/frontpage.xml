@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
+    android:padding="15dp"
     android:gravity="center"
     android:background="@color/white">
 
@@ -67,15 +67,15 @@
         />
 
     <!-- Sign Up Button -->
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="SIGN UP"
-        android:textAllCaps="false"
-        android:backgroundTint="@color/BLUE"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/btnSignUp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:text="SIGN UP"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:backgroundTint="@color/BLUE"-->
+<!--        />-->
 
     <!-- Progress Bar (Hidden by Default) -->
     <ProgressBar
@@ -85,18 +85,33 @@
         android:layout_marginTop="16dp"
         android:visibility="gone"/>
 
-    <!-- Forgot Password -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Forgot Password?"
+        android:clickable="true"
+        android:layout_marginEnd="180dp"
+        android:textColor="@color/BLUE400"
+        android:background="?android:attr/selectableItemBackground"/>
+
+    <TextView
+        android:id="@+id/tvSignUP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:text="Sign up"
+        android:background="?android:attr/selectableItemBackground"
         android:textColor="@color/BLUE400" />
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">galaxy</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Robox Galaxy</string>
+    <string-array name="department_array">
+        <item>CSE</item>
+        <item>CSE-AI</item>
+        <item>ECE</item>
+    </string-array>
+
 </resources>
