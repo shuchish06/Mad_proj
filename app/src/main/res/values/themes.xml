@@ -1,9 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Galaxy" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.Galaxy" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/BLUE</item>
+        <item name="colorPrimaryDark">@color/BLUE</item>
     </style>
-
-    <style name="Theme.Galaxy" parent="Base.Theme.Galaxy" />
 </resources>
