@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Splash_Page"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:src="@drawable/logo"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AssignMate"
+        android:textColor="#123458"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+
+
+</RelativeLayout>
