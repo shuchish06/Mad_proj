@@ -76,7 +76,9 @@ class SignUpActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
 
-                   
+
+
+
                 }}
 
 
