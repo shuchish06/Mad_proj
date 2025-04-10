@@ -12,7 +12,7 @@ import com.google.firebase.ktx.Firebase
 import com.robox.galaxy.databinding.FrontpageBinding
 
 
-class FrontPage : AppCompatActivity() {
+public class FrontPage : AppCompatActivity() {
     private lateinit var binding: FrontpageBinding
     private lateinit var auth: FirebaseAuth
 
@@ -30,6 +30,9 @@ class FrontPage : AppCompatActivity() {
         binding.tvSignUP.setOnClickListener {
             signUpUser()
         }
+    }
+    override fun onBackPressed() {
+        moveTaskToBack(true)
     }
 
     private fun loginUser() {
@@ -64,7 +67,9 @@ class FrontPage : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (auth.currentUser != null) {
-            Toast.makeText(this, "Already logged in as ${auth.currentUser?.email}", Toast.LENGTH_SHORT).show()
-        }
+//            Toast.makeText(this, "Logging as  ${auth.currentUser?.email}", Toast.LENGTH_SHORT).show()
+            val intent=Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        finish()}
     }
 }
