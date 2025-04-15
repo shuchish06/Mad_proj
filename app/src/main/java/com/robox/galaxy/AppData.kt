@@ -1,25 +1,20 @@
-package com.robox.galaxy//package com.robox.galaxy
-//
-//import com.google.firebase.firestore.FirebaseFirestore
-//
-//data class AppData (val EnrNo : String ,val courses : List<String> = emptyList())
-//
-//fun main(){
-//    val studentData = listOf(
-//        AppData("20001012024",  listOf("MAD", "DS")),
-//    )
-//    fun uploadingDataToFirestore(){
-//        val db =FirebaseFirestore.getInstance()
-//        val studentCollection= db.collection("STUDENTS")
-//        studentData.forEach{student->
-//            studentCollection.document(student.EnrNo)
-//                .set(student)
-//                .addOnSuccessListener {
-//                    println("Uploaded student")
-//                }
-//                .addOnFailureListener { e ->
-//                    println("Error uploading : $e")
-//                }
-//        }
-//    }
-//}
+package com.robox.galaxy
+data class Student(
+    var id: String = "",
+    var email: String = "",
+    var Eno: String = "",
+    var Fname: String = "",
+    var Sname: String = ""
+)
+
+data class Course(
+    var id: String = "",
+    var name: String = "",
+    var description: String = ""
+)
+
+data class Enrollment(
+    val id: String = "",
+    val enrollmentNumber: String = "",
+    val courseId: String = ""
+)
