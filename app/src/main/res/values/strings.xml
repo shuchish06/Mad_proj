@@ -5,6 +5,13 @@
         <item>CSE-AI</item>
         <item>ECE</item>
     </string-array>
+    <string name="portal">Portal</string>
+    <string name="upload_assignment">Upload Assignment</string>
+    <string name="enter_title">Enter assignment title</string>
+    <string name="add_comments">Add comments (optional)</string>
+    <string name="choose_file">Choose File</string>
+    <string name="no_file_selected">No file selected</string>
+    <string name="submit">Submit</string>
 
 
 

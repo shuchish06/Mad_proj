@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-// <- Replace with the correct path to your Assignment data class
 
 class AssignmentAdapter(private val items: List<Assignment>) :
     RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder>() {
