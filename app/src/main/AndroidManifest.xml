@@ -27,12 +27,18 @@
         <activity android:name=".MainActivity"
             android:exported="false">
         </activity>
+
+        <activity android:name=".Submission"
+            android:exported="false">
+        </activity>
+
         <activity android:name=".FirstActivity"
             android:exported="false">
         </activity>
         <activity android:name=".FrontPage"
             android:exported="false">
         </activity>
+
 
     </application>
 

@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">Robox Galaxy</string>
+    <string name="app_name">AssignMate</string>
     <string-array name="department_array">
         <item>CSE</item>
         <item>CSE-AI</item>
         <item>ECE</item>
     </string-array>
+
+
 
 </resources>
