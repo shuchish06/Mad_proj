@@ -57,10 +57,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             Log.d(TAG, "logouticon clicked: Sign out completed, navigating to FrontPage")
         }
-        binding.hamburger.setOnClickListener{
-            val intent=Intent(this,Submission::class.java)
-            startActivity(intent)
-        }
+
     }
 
     private fun fetchEnrolledCourses() {
