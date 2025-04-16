@@ -1,7 +1,6 @@
 package com.robox.galaxy
 
-
-
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
 
 class AssignmentAdapter(private val items: List<Assignment>) :
     RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder>() {
@@ -35,7 +33,7 @@ class AssignmentAdapter(private val items: List<Assignment>) :
         holder.dueDate.text = "Due: ${assignment.dueDate}"
         holder.status.text = assignment.status
 
-        // Status background and button color
+        // Set background and button based on status
         when (assignment.status) {
             "Submitted" -> {
                 holder.status.setBackgroundResource(R.drawable.status_bg_green)
@@ -58,7 +56,28 @@ class AssignmentAdapter(private val items: List<Assignment>) :
                 holder.actionBtn.setBackgroundColor(Color.parseColor("#007bff"))
             }
         }
+
+        // Handle button click
+        holder.actionBtn.setOnClickListener {
+            if (assignment.status != "Submitted") {
+                val context = holder.itemView.context
+                val intent = Intent(context, Submission::class.java)
+                intent.putExtra("assignmentTitle", assignment.title)
+                intent.putExtra("courseCode", assignment.courseCode)
+                intent.putExtra("dueDate", assignment.dueDate)
+                context.startActivity(intent)
+            }
+        }
     }
 
     override fun getItemCount(): Int = items.size
 }
+
+
+
+
+
+
+
+
+

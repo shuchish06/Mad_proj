@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import android.content.Intent
+
 
 class CourseDisplay(private val courses: MutableList<Course>) :
 RecyclerView.Adapter<CourseDisplay.ViewHolder>() {
@@ -29,6 +31,18 @@ RecyclerView.Adapter<CourseDisplay.ViewHolder>() {
         Log.d(TAG, "onBindViewHolder: Binding course at position $position - Name: ${course.name}, Description: ${course.description}")
         holder.name.text = course.name ?: "No Name"
         holder.description.text = course.description ?: "No Description"
+
+        // intent from this activity to firstactivity
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, FirstActivity::class.java)
+
+            // Pass tabIndex as extra (example: 1 = Pending tab)
+            intent.putExtra("tabIndex", 0)
+
+            context.startActivity(intent)
+        }
+
     }
 
     override fun getItemCount(): Int = courses.size

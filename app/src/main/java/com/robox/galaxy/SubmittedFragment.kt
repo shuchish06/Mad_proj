@@ -27,11 +27,11 @@ class SubmittedFragment : Fragment() {
 
         val assignments = listOf(
             Assignment(
-                "Literature Review: Modern Novels",
-                "LIT303: Contemporary Literature",
-                "Apr 11, 2025, 04:40 PM",
+                "Android Architecture",
+                "BCS104: Mobile Application Development",
+                "May 20, 2025, 02:59 PM",
                 "Submitted",
-                "2 files uploaded"
+                "1 file uploaded"
             )
         )
 
