@@ -3,6 +3,7 @@ package com.robox.galaxy
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -13,8 +14,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.robox.galaxy.databinding.MainactivityBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainactivityBinding
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Initialize RecyclerView
-        recyclerView = findViewById(R.id.coursesRecyclerView)
+        recyclerView = binding.coursesRecyclerView
         if (recyclerView == null) {
             Log.e(TAG, "onCreate: coursesRecyclerView not found in layout")
         } else {
@@ -70,6 +69,9 @@ class MainActivity : AppCompatActivity() {
         }
         Log.d(TAG, "fetchEnrolledCourses: User logged in with email: ${user.email}")
 
+        // Show ProgressBar
+        binding.progressBar.visibility = View.VISIBLE
+
         lifecycleScope.launch(Dispatchers.Main) {
             try {
                 Log.d(TAG, "fetchEnrolledCourses: Querying users collection for email: ${user.email}")
@@ -81,6 +83,8 @@ class MainActivity : AppCompatActivity() {
                         if (studentResult.isEmpty) {
                             Log.i(TAG, "fetchEnrolledCourses: No user found for email: ${user.email}")
                             Toast.makeText(this@MainActivity, "No student found", Toast.LENGTH_SHORT).show()
+                            // Hide ProgressBar
+                            binding.progressBar.visibility = View.GONE
                             return@addOnSuccessListener
                         }
 
@@ -90,6 +94,8 @@ class MainActivity : AppCompatActivity() {
                         if (student == null) {
                             Log.e(TAG, "fetchEnrolledCourses: Failed to convert user data")
                             Toast.makeText(this@MainActivity, "Error getting student data", Toast.LENGTH_SHORT).show()
+                            // Hide ProgressBar
+                            binding.progressBar.visibility = View.GONE
                             return@addOnSuccessListener
                         }
                         Log.d(TAG, "fetchEnrolledCourses: Student fetched: $student")
@@ -99,6 +105,8 @@ class MainActivity : AppCompatActivity() {
                         if (enrollmentNumber.isEmpty()) {
                             Log.w(TAG, "fetchEnrolledCourses: No Eno found, value: '$enrollmentNumber'")
                             Toast.makeText(this@MainActivity, "No enrollment number found", Toast.LENGTH_SHORT).show()
+                            // Hide ProgressBar
+                            binding.progressBar.visibility = View.GONE
                             return@addOnSuccessListener
                         }
                         Log.d(TAG, "fetchEnrolledCourses: Valid Eno found: $enrollmentNumber")
@@ -110,18 +118,20 @@ class MainActivity : AppCompatActivity() {
                                 Log.d(TAG, "fetchEnrolledCourses: Enrollment query succeeded, result size: ${enrollmentResult.size()}")
                                 val courseIds = mutableListOf<String>()
                                 for (doc in enrollmentResult) {
-                                    val courseId = doc.getString("courseID") // Note: courseID (case-sensitive)
-                                    if (courseId != null) {
-                                        courseIds.add(courseId)
-                                        Log.d(TAG, "fetchEnrolledCourses: Found course ID: $courseId")
+                                    val courseIdList = doc.get("courseID") as? List<String>
+                                    if (courseIdList != null) {
+                                        courseIds.addAll(courseIdList)
+                                        Log.d(TAG, "fetchEnrolledCourses: Found course IDs: $courseIdList")
                                     } else {
-                                        Log.w(TAG, "fetchEnrolledCourses: courseId is null in document: ${doc.id}")
+                                        Log.w(TAG, "fetchEnrolledCourses: courseID is null or not a list in document: ${doc.id}")
                                     }
                                 }
 
                                 if (courseIds.isEmpty()) {
                                     Log.w(TAG, "fetchEnrolledCourses: No course IDs found in enrollments")
                                     adapter.notifyDataSetChanged()
+                                    // Hide ProgressBar
+                                    binding.progressBar.visibility = View.GONE
                                     return@addOnSuccessListener
                                 }
 
@@ -150,27 +160,41 @@ class MainActivity : AppCompatActivity() {
                                                 Log.d(TAG, "Coursesqq: $courses")
                                                 Log.d(TAG, "fetchEnrolledCourses: Notifying adapter of data change, courses size: ${courses.size}")
                                                 adapter.notifyDataSetChanged()
+                                                // Hide ProgressBar when all courses are loaded
+                                                binding.progressBar.visibility = View.GONE
                                             }
                                         }
                                         .addOnFailureListener { error ->
                                             Log.e(TAG, "fetchEnrolledCourses: Error loading course for ID $courseId: ${error.message}")
                                             Toast.makeText(this@MainActivity, "Error loading a course: ${error.message}", Toast.LENGTH_SHORT).show()
+                                            coursesFetched++
+                                            if (coursesFetched == courseIds.size) {
+                                                adapter.notifyDataSetChanged()
+                                                // Hide ProgressBar even if there's an error
+                                                binding.progressBar.visibility = View.GONE
+                                            }
                                         }
                                 }
                             }
                             .addOnFailureListener { error ->
                                 Log.e(TAG, "fetchEnrolledCourses: Error loading enrollments: ${error.message}")
                                 Toast.makeText(this@MainActivity, "Error loading enrollments: ${error.message}", Toast.LENGTH_SHORT).show()
+                                // Hide ProgressBar
+                                binding.progressBar.visibility = View.GONE
                             }
                     }
                     .addOnFailureListener { error ->
                         Log.e(TAG, "fetchEnrolledCourses: Error finding user: ${error.message}")
                         Toast.makeText(this@MainActivity, "Error finding user: ${error.message}", Toast.LENGTH_SHORT).show()
+                        // Hide ProgressBar
+                        binding.progressBar.visibility = View.GONE
                     }
             } catch (e: Exception) {
                 Log.e(TAG, "fetchEnrolledCourses: Unexpected error: ${e.message}")
                 Toast.makeText(this@MainActivity, "Something went wrong: ${e.message}", Toast.LENGTH_SHORT).show()
                 e.printStackTrace()
+                // Hide ProgressBar
+                binding.progressBar.visibility = View.GONE
             }
         }
     }
