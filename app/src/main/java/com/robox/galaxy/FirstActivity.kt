@@ -29,6 +29,11 @@ class FirstActivity : AppCompatActivity() {
                 else -> ""
             }
         }.attach()
+
+        // Set initial tab if provided
+        val tabIndex = intent.getIntExtra("tabIndex", 0)
+        viewPager.currentItem = tabIndex
+
         }
 
 

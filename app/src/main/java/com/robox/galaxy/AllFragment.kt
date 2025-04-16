@@ -25,28 +25,28 @@ class AllFragment : Fragment() {
 
         val assignments = listOf(
             Assignment(
-                "Literature Review: Modern Novels",
-                "LIT303: Contemporary Literature",
-                "Apr 11, 2025, 02:59 PM",
+                "Android Architecture",
+                "BCS104: Mobile Application Development",
+                "May 20, 2025, 02:59 PM",
                 "Submitted",
-                "2 files uploaded"
+                "1 file uploaded"
             ),
             Assignment(
-                "Marketing Strategy Analysis",
-                "BUS401: Strategic Marketing",
-                "Apr 12, 2025, 02:59 PM",
+                "Introduction To Data Science",
+                "BAI103: Data Visualisation ",
+                "Apr 22, 2025, 02:59 PM",
                 "Overdue"
             ),
             Assignment(
                 "Mobile App UI Design",
-                "DES202: User Interface Design",
-                "Apr 14, 2025, 02:59 PM",
+                "BAS104: Mobile Application Development",
+                "Apr 24, 2025, 02:59 PM",
                 "Due Soon"
             ),
             Assignment(
-                "Research Paper on Machine Learning",
-                "CS401: Advanced AI",
-                "Apr 20, 2025, 02:59 PM",
+                "Environmental Sciences",
+                "BAS104: Water Quality",
+                "Apr 30, 2025, 02:59 PM",
                 "Pending"
             )
         )

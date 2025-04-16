@@ -43,6 +43,12 @@ class Submission : AppCompatActivity() {
             // Simulate successful upload
             Toast.makeText(this, "Assignment uploaded successfully!", Toast.LENGTH_SHORT).show()
             finish()
+
+            // Redirect to FirstActivity and go to Submitted tab (index 2)
+            val intent = Intent(this, FirstActivity::class.java)
+            intent.putExtra("tabIndex", 2)
+            startActivity(intent)
+            finish()
         }
     }
 
