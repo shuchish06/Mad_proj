@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainactivityBinding
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: CourseDisplay // Assuming this is defined elsewhere
+    private lateinit var adapter: CourseDisplay
     private val courses = mutableListOf<Course>()
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
@@ -56,6 +56,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, FrontPage::class.java)
             startActivity(intent)
             Log.d(TAG, "logouticon clicked: Sign out completed, navigating to FrontPage")
+        }
+        binding.hamburger.setOnClickListener{
+            val intent=Intent(this,Submission::class.java)
+            startActivity(intent)
         }
     }
 
@@ -170,7 +174,6 @@ class MainActivity : AppCompatActivity() {
                                             coursesFetched++
                                             if (coursesFetched == courseIds.size) {
                                                 adapter.notifyDataSetChanged()
-                                                // Hide ProgressBar even if there's an error
                                                 binding.progressBar.visibility = View.GONE
                                             }
                                         }
