@@ -9,4 +9,13 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/noAssignmentsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Whoo No assignments!"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:visibility="gone" />
 </LinearLayout>
