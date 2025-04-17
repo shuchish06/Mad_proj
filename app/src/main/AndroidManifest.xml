@@ -38,6 +38,9 @@
         <activity android:name=".FrontPage"
             android:exported="false">
         </activity>
+        <activity android:name=".NothingAssignedActivity"
+            android:exported="false">
+        </activity>
 
 
     </application>
