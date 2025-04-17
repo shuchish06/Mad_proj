@@ -40,10 +40,10 @@ class AssignmentAdapter(private val items: List<Assignment>) :
                 holder.actionBtn.text = "View Submission"
                 holder.actionBtn.setBackgroundColor(Color.parseColor("#28a745"))
             }
-            "Overdue" -> {
+            "Pending" -> {
                 holder.status.setBackgroundResource(R.drawable.status_bg_red)
                 holder.actionBtn.text = "Upload Assignment"
-                holder.actionBtn.setBackgroundColor(Color.parseColor("#dc3545"))
+                holder.actionBtn.setBackgroundColor(Color.parseColor("#ff6f61"))
             }
             "Due Soon" -> {
                 holder.status.setBackgroundResource(R.drawable.status_bg_yellow)

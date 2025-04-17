@@ -39,17 +39,43 @@ class SubmittedFragment : Fragment() {
             Assignment(
                 "Designing a Calculator App",
                 "MOBILE APPLICATION DEVELOPMENT",
-                "BAS104",
+                "BCS104",
                 "Apr 22, 2025, 02:59 PM",
-                "Pending"
+                "Pending",
+                ""
             ),
             Assignment(
                 "Mobile App UI Design",
                 "MOBILE APPLICATION DEVELOPMENT",
-                "BAS104",
+                "BCS104",
                 "Apr 24, 2025, 04:39 PM",
-                "Submitted"
-            )
+                "Pending",
+                ""
+            ),
+            Assignment(
+                "Pointers",
+                "DATA STRUCTURES",
+                "BCS103",
+                "Apr 30, 2025, 04:39 PM",
+                "Pending",
+                ""
+            ),
+            Assignment(
+                "Trees",
+                "DATA STRUCTURES",
+                "BCS103",
+                "May 1, 2025, 05:00 PM",
+                "Pending",
+                ""
+            ),
+            Assignment(
+                "Numpy Array ",
+                "INTRODUCTION TO DATA SCIENCE",
+                "BCS103",
+                "May 5, 2025, 05:00 PM",
+                "Pending",
+                ""
+            ),
         )
 
         val currentCourseName = CourseData.UNIcourse?.name ?: ""
