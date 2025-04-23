@@ -59,8 +59,14 @@ class AssignmentAdapter(private val items: List<Assignment>) :
 
         // Handle button click
         holder.actionBtn.setOnClickListener {
-            if (assignment.status != "Submitted") {
-                val context = holder.itemView.context
+            val context = holder.itemView.context
+            if (assignment.status == "Submitted") {
+                val intent = Intent(context, ViewSubmission::class.java)
+                intent.putExtra("assignmentTitle", assignment.title)
+                intent.putExtra("courseCode", assignment.courseCode)
+                intent.putExtra("dueDate", assignment.dueDate)
+                context.startActivity(intent)
+            } else {
                 val intent = Intent(context, Submission::class.java)
                 intent.putExtra("assignmentTitle", assignment.title)
                 intent.putExtra("courseCode", assignment.courseCode)
