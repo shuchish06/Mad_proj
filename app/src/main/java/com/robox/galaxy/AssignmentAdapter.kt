@@ -65,6 +65,7 @@ class AssignmentAdapter(private val items: List<Assignment>) :
                 intent.putExtra("assignmentTitle", assignment.title)
                 intent.putExtra("courseCode", assignment.courseCode)
                 intent.putExtra("dueDate", assignment.dueDate)
+
                 context.startActivity(intent)
             } else {
                 val intent = Intent(context, Submission::class.java)
