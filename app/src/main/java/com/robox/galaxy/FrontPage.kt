@@ -32,6 +32,7 @@ public class FrontPage : AppCompatActivity() {
         }
     }
     override fun onBackPressed() {
+        super.onBackPressed()
         moveTaskToBack(true)
     }
 

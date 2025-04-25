@@ -9,8 +9,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AssignmentAdapter(private val items: List<Assignment>) :
-    RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder>() {
+class AssignmentAdapter(
+    private val items: List<Assignment>,
+    private val onUploadClick: ((Assignment) -> Unit)? = null
+) : RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder>() {
 
     class AssignmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.title)
@@ -18,6 +20,58 @@ class AssignmentAdapter(private val items: List<Assignment>) :
         val dueDate: TextView = view.findViewById(R.id.dueDate)
         val status: TextView = view.findViewById(R.id.status)
         val actionBtn: Button = view.findViewById(R.id.actionBtn)
+
+        fun bind(assignment: Assignment, onUploadClick: ((Assignment) -> Unit)?) {
+            title.text = assignment.title
+            course.text = assignment.courseCode
+            dueDate.text = "Due: ${assignment.dueDate}"
+            status.text = assignment.status
+
+            when (assignment.status) {
+                "Submitted" -> {
+                    status.setBackgroundResource(R.drawable.status_bg_green)
+                    actionBtn.text = "View Submission"
+                    actionBtn.setBackgroundColor(Color.parseColor("#28a745"))
+                }
+                "Pending" -> {
+                    status.setBackgroundResource(R.drawable.status_bg_red)
+                    actionBtn.text = "Upload Assignment"
+                    actionBtn.setBackgroundColor(Color.parseColor("#ff6f61"))
+                }
+                "Due Soon" -> {
+                    status.setBackgroundResource(R.drawable.status_bg_yellow)
+                    actionBtn.text = "Upload Assignment"
+                    actionBtn.setBackgroundColor(Color.parseColor("#007bff"))
+                }
+                else -> {
+                    status.setBackgroundResource(R.drawable.status_bg_grey)
+                    actionBtn.text = "Upload Assignment"
+                    actionBtn.setBackgroundColor(Color.parseColor("#007bff"))
+                }
+            }
+
+            actionBtn.setOnClickListener {
+                if (assignment.status == "Submitted") {
+                    val context = itemView.context
+                    val intent = Intent(context, ViewSubmission::class.java).apply {
+                        putExtra("assignmentTitle", assignment.title)
+                        putExtra("courseCode", assignment.courseCode)
+                        putExtra("dueDate", assignment.dueDate)
+                    }
+                    context.startActivity(intent)
+                } else {
+                    onUploadClick?.invoke(assignment) ?: run {
+                        val context = itemView.context
+                        val intent = Intent(context, Submission::class.java).apply {
+                            putExtra("assignmentTitle", assignment.title)
+                            putExtra("courseCode", assignment.courseCode)
+                            putExtra("dueDate", assignment.dueDate)
+                        }
+                        context.startActivity(intent)
+                    }
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AssignmentViewHolder {
@@ -27,61 +81,12 @@ class AssignmentAdapter(private val items: List<Assignment>) :
     }
 
     override fun onBindViewHolder(holder: AssignmentViewHolder, position: Int) {
-        val assignment = items[position]
-        holder.title.text = assignment.title
-        holder.course.text = assignment.courseCode
-        holder.dueDate.text = "Due: ${assignment.dueDate}"
-        holder.status.text = assignment.status
+        holder.bind(items[position], onUploadClick)
 
-        // Set background and button based on status
-        when (assignment.status) {
-            "Submitted" -> {
-                holder.status.setBackgroundResource(R.drawable.status_bg_green)
-                holder.actionBtn.text = "View Submission"
-                holder.actionBtn.setBackgroundColor(Color.parseColor("#28a745"))
-            }
-            "Pending" -> {
-                holder.status.setBackgroundResource(R.drawable.status_bg_red)
-                holder.actionBtn.text = "Upload Assignment"
-                holder.actionBtn.setBackgroundColor(Color.parseColor("#ff6f61"))
-            }
-            "Due Soon" -> {
-                holder.status.setBackgroundResource(R.drawable.status_bg_yellow)
-                holder.actionBtn.text = "Upload Assignment"
-                holder.actionBtn.setBackgroundColor(Color.parseColor("#007bff"))
-            }
-            else -> {
-                holder.status.setBackgroundResource(R.drawable.status_bg_grey)
-                holder.actionBtn.text = "Upload Assignment"
-                holder.actionBtn.setBackgroundColor(Color.parseColor("#007bff"))
-            }
-        }
-
-        // Handle button click
-        holder.actionBtn.setOnClickListener {
-            val context = holder.itemView.context
-            if (assignment.status == "Submitted") {
-                val intent = Intent(context, ViewSubmission::class.java)
-                intent.putExtra("assignmentTitle", assignment.title)
-                intent.putExtra("courseCode", assignment.courseCode)
-                intent.putExtra("dueDate", assignment.dueDate)
-
-                context.startActivity(intent)
-            } else {
-                val intent = Intent(context, Submission::class.java)
-                intent.putExtra("assignmentTitle", assignment.title)
-                intent.putExtra("courseCode", assignment.courseCode)
-                intent.putExtra("dueDate", assignment.dueDate)
-                context.startActivity(intent)
-            }
-        }
     }
 
     override fun getItemCount(): Int = items.size
 }
-
-
-
 
 
 
