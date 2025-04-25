@@ -82,6 +82,7 @@ class AssignmentAdapter(
 
     override fun onBindViewHolder(holder: AssignmentViewHolder, position: Int) {
         holder.bind(items[position], onUploadClick)
+
     }
 
     override fun getItemCount(): Int = items.size
